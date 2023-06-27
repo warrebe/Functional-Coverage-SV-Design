@@ -1,0 +1,54 @@
+1.
+For the first covergroup, which I name cg_ss, I covered 15/24 bins, and
+missed 9/24. All the bins missed were in the cp_both cross category. This
+is due to illegal cases not being defined as of yet for the both. As in,
+there are certain transitions that should not happen, and should be defined
+as illegal for the cross. 
+The cross combinations are:
+				ps			ns
+			bin <auto[SUBT],auto[DONE]>
+			bin <auto[SWAP],auto[DONE]>                   
+            bin <auto[DONE],auto[SUBT]>                   
+            bin <auto[SUBT],auto[SUBT]>                   
+            bin <auto[SWAP],auto[SUBT]>                    
+            bin <auto[DONE],auto[SWAP]>                  
+            bin <auto[SWAP],auto[SWAP]>                     
+            bin <auto[TEST],auto[SWAP]>                   
+            bin <auto[TEST],auto[TEST]>
+
+4.
+For the fourth covergroup, which I name cg_reg, I covered 7/8 bins, and
+missed 1/8.	The bin I missed was in cp_both, as sub and swap were not
+acive at the same time. This makes sense, as there should be only a
+signular state at a time, and these registers dictate the next state
+that needs to be visited. This needs to be edited as an illegal state.
+
+Modifications:
+-added ignore bins to first covergroup
+-added ignore bin to final covergroup
+-modified run scripts for two parts
+-added case of 5000 5000 to account for bin 6 of out
+
+5.
+For generating the 1000 lines of >10000 valued relatively prime numbers,
+I used Google and generated a script name GenRandIn.sh file that creates
+the rp_input_data file, it takes about 10-11 minutes to create the file, 
+so I attached the input file and the script.
+
+For running timing tests I used linux time command and created :
+ time ./coverscript.sh
+
+First test results:
+
+real    0m7.586s
+user    0m4.921s
+sys     0m1.051s
+
+Second test results:
+
+real    0m7.437s
+user    0m4.783s
+sys     0m0.997s
+
+
+
